@@ -15,15 +15,20 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
+    // [MODIFICADO - Parte 6]: Se extrajo la lógica de validación al método privado validar()
     public Product save(Product product) {
-        // Original: if (product.getPrice() <= 0) {
+        validar(product);
+        return productRepository.save(product);
+    }
+
+    // [NUEVO - Parte 6]: Método privado con las validaciones del producto
+    private void validar(Product product) {
         if (product.getPrice() <= 0) {
             throw new IllegalArgumentException("El precio debe ser mayor a cero");
         }
         if (product.getStock() < 0) {
             throw new IllegalArgumentException("El stock no puede ser negativo");
         }
-        return productRepository.save(product);
     }
 
     public List<Product> findAll() {
