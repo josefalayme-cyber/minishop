@@ -16,6 +16,7 @@ public class ProductService {
     }
 
     public Product save(Product product) {
+        // Original: if (product.getPrice() <= 0) {
         if (product.getPrice() <= 0) {
             throw new IllegalArgumentException("El precio debe ser mayor a cero");
         }
