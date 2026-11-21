@@ -8,30 +8,17 @@ import static org.junit.jupiter.api.Assertions.*;
 class ProductRequestTest {
 
     @Test
-    void testToEntityAndGettersSetters() {
-        ProductRequest request = new ProductRequest();
-        request.setName("Laptop Gamer");
-        request.setPrice(3500.0);
-        request.setStock(5);
+    void testToEntityAndAccessors() {
+        ProductRequest request = new ProductRequest("Laptop Gamer", 3500.0, 5);
 
-        assertEquals("Laptop Gamer", request.getName());
-        assertEquals(3500.0, request.getPrice());
-        assertEquals(5, request.getStock());
+        assertEquals("Laptop Gamer", request.name());
+        assertEquals(3500.0, request.price());
+        assertEquals(5, request.stock());
 
         Product entity = request.toEntity();
         assertNull(entity.getId());
         assertEquals("Laptop Gamer", entity.getName());
         assertEquals(3500.0, entity.getPrice());
         assertEquals(5, entity.getStock());
-    }
-
-    @Test
-    void testAllArgsConstructor() {
-        ProductRequest request = new ProductRequest("Mouse", 80.0, 20);
-        Product entity = request.toEntity();
-
-        assertEquals("Mouse", entity.getName());
-        assertEquals(80.0, entity.getPrice());
-        assertEquals(20, entity.getStock());
     }
 }
